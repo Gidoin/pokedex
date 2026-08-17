@@ -1,11 +1,11 @@
-const pokecard = ({ data }) => {
+const Pokecard = ({ data }) => {
   return (
     <div style={{ position: "relative", width: 300, height: 120 }}>
       {data.map((d, i) => (
         <div
           key={i}
           style={{
-            position: "absolute",
+            position: "relative",
             left: d.x,
             top: d.y,
             width: 16,
@@ -19,4 +19,4 @@ const pokecard = ({ data }) => {
   );
 };
 
-export default pokecard;
+export default Pokecard;
