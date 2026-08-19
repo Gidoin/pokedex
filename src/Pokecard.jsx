@@ -60,8 +60,8 @@ const Pokecard = ({ pokemon }) => {
           style={{
             width: `${hpPercent}%`,
             height: "100%",
-            backgroundColor: typeColors[pokemon.type],
-            borderRadius: 4,
+            backgroundColor: "#000000",
+            borderRadius: 1,
           }}
         />
       </div>
@@ -81,8 +81,8 @@ const Pokecard = ({ pokemon }) => {
           style={{
             width: `${attackPercent}%`,
             height: "100%",
-            backgroundColor: typeColors[pokemon.type],
-            borderRadius: 4,
+            backgroundColor: "#000000",
+            borderRadius: 1,
           }}
         />
       </div>

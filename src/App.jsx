@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./App.css";
 import Pokecard from "./Pokecard";
 import { typeColors, typeEmojis } from "./pokemonTypes";
+import pokemonLogo from "./assets/pokemon.png";
+import pokeballBackground from "./assets/pokeball.png";
 
 const pokemonData = [
   { id: 1, name: "Bulbasaur", type: "Grass", hp: 45, attack: 49 },
@@ -30,14 +32,33 @@ const allTypes = [...new Set(pokemonData.map((pokemon) => pokemon.type))];
 
 export default function App() {
   const [selectedType, setSelectedType] = useState("All");
+  const [isHovered, setIsHovered] = useState(false);
   const filteredData =
     selectedType === "All"
       ? pokemonData
       : pokemonData.filter((pokemon) => pokemon.type === selectedType);
 
   return (
-    <>
-      <h1> Pokedex</h1>
+    <div style={{ position: "relative" }}>
+      <img
+        src={pokeballBackground}
+        alt="img de pokeball"
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          opacity: 0.2,
+          zIndex: -1,
+        }}
+      />
+      <h1>
+        {" "}
+        Pokedex{" "}
+        <img src={pokemonLogo} alt="pokemon logo" width="300" height="150" />
+      </h1>
       <h2> Choisis ton type de Pokemon ! </h2>
       <div
         style={{
@@ -51,7 +72,12 @@ export default function App() {
           <button
             key={type}
             onClick={() => setSelectedType(type)}
-            style={{ fontWeight: type === selectedType ? "bold" : "normal" }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            style={{
+              fontWeight: type === selectedType ? "bold" : "normal",
+              filter: isHovered ? "brightness(1.25)" : "brightness(1)",
+            }}
           >
             {typeEmojis[type] ?? "🔘"} {type}
           </button>
@@ -70,6 +96,6 @@ export default function App() {
           <Pokecard key={pokemon.id} pokemon={pokemon} />
         ))}
       </div>
-    </>
+    </div>
   );
 }
